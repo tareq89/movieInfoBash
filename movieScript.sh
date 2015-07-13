@@ -59,7 +59,6 @@ getMovieGenre(){
 	movieGenre="${movieGenre#$movieGenrePrefix}"
 	movieGenre="${movieGenre%$movieGenreSuffix}"
 	
-	# echo $movieGenre
 	echo "<td>" >> output.html
 	echo $movieGenre >> output.html
 	echo "</td>" >> output.html
