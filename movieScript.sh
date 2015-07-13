@@ -1,7 +1,7 @@
 #!/bin/bash
 
 getMovieDescription(){
-	local html=$1
+	html=$1
 
 	movieDescriptionPrefix='<p itemprop="description">'
 	movieDescriptionSuffix='</p>'
@@ -17,7 +17,7 @@ getMovieDescription(){
 }
 
 getMovieRating(){
-	local html=$1
+	html=$1
 
 	movieRatingPrefix='<span itemprop="ratingValue">'
 	movieRatingSuffix='</span>'
@@ -33,7 +33,7 @@ getMovieRating(){
 }
 
 getMovieName(){
-	local html=$1
+	html=$1
 
 	movieNamePrefix='<h1 class="header"> <span class="itemprop" itemprop="name">'
 	movieNameSuffix='</span>'
@@ -49,7 +49,7 @@ getMovieName(){
 }
 
 getMovieGenre(){
-	local html=$1
+	html=$1
 
 	movieGenrePrefix='<span class="itemprop" itemprop="genre">'
 	movieGenreSuffix='</span>'
@@ -67,7 +67,7 @@ getMovieGenre(){
 
 
 getMoviePageLink(){
-	local movieName=$1	
+	movieName=$1	
 	host='http://imdb.com'
 	fileNamePrefix="/home/tareq.aziz/movies/"
 
