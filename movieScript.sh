@@ -106,7 +106,7 @@ getMoviePageLink(){
 
 
 
-# Main program
+# Main Function
 upperHtml=$(cat upper.html)
 lowerHtml=$(cat lower.html)
 echo $upperHtml >> output.html
