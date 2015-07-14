@@ -129,7 +129,7 @@ do
 	if [ "$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*?))((\d\d\d\d)))')"  ]	
 	then
 		movieName="$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*?))((\d\d\d\d)))')"
-		# removeNoise "$movieName"
+		removeNoise "$movieName"
 		
 	else
 		movieName="$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*)))')"	
