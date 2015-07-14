@@ -66,14 +66,8 @@ getMovieGenre(){
 
 
 getMoviePageLink(){
-	movieName=$1	
-	host='http://imdb.com'
-	fileNamePrefix="/home/tareq.aziz/movies/"
 
-	movieName="${movieName#$fileNamePrefix}"						
-	movieName="$(echo $movieName | tr '.' ' ')"	
-	movieName="$(echo $movieName | tr ' ' '+')"	
-
+	movieName=$1
 	html=$(wget http://www.imdb.com/find?q=$movieName -q -O -)
 
 	link="$(echo $html | grep -oP '<table class="findList"> <tr class="findResult odd"> <td class="primary_photo"> <a href="/title/(.*?)" >?')"	
@@ -103,7 +97,25 @@ getMoviePageLink(){
 	echo ""
 }
 
+removeNoise(){
+	movieName=$1	
+	host='http://imdb.com'
+	fileNamePrefix="/home/tareq.aziz/movies/"
 
+	movieName="${movieName#$fileNamePrefix}"						
+	movieName="$(echo $movieName | tr '.' ' ')"	
+	movieName="$(echo $movieName | tr ' ' '+')"
+
+	movieName="${movieName%brrip*}"
+	movieName="${movieName%720p*}"
+	movieName="${movieName%bdrip*}"
+	movieName="${movieName%dvdrip*}"
+	movieName="${movieName%extended*}"	
+	movieName="${movieName%1080p*}"	
+	movieName="${movieName%franchise*}"	
+	movieName="${movieName%trilogy*}"	
+	getMoviePageLink $movieName
+}
 
 # Main Function
 upperHtml=$(cat upper.html)
@@ -117,11 +129,12 @@ do
 	if [ "$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*?))((\d\d\d\d)))')"  ]	
 	then
 		movieName="$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*?))((\d\d\d\d)))')"
-		getMoviePageLink "$movieName"
+		# removeNoise "$movieName"
 		
 	else
 		movieName="$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*)))')"	
-		getMoviePageLink "$movieName"
+
+		removeNoise "$movieName"
 	fi	
 done	
 echo $lowerHtml >> output.html
