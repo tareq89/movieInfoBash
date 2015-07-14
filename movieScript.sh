@@ -11,9 +11,11 @@ getMovieDescription(){
 	movieDescription="${movieDescription%$movieDescriptionSuffix}"
 
 	echo $movieDescription
-	echo "<td>" >> output.html
-	echo $movieDescription >> output.html
-	echo "</td>" >> output.html
+	# echo "<td>" >> output.html
+	# echo $movieDescription >> output.html
+	# echo "</td>" >> output.html
+	echo "		<td>" $movieDescription "</td>" >> output.html
+
 }
 
 getMovieRating(){
@@ -27,9 +29,10 @@ getMovieRating(){
 	movieRating="${movieRating%$movieRatingSuffix}"
 
 	echo $movieRating
-	echo "<td>" >> output.html
-	echo $movieRating >> output.html
-	echo "</td>" >> output.html
+	# echo "<td>" >> output.html
+	# echo $movieRating >> output.html
+	# echo "</td>" >> output.html
+	echo "		<td>" $movieRating "</td>" >> output.html
 }
 
 getMovieName(){
@@ -43,9 +46,10 @@ getMovieName(){
 	movieName="${movieName%$movieNameSuffix}"
 	
 	echo $movieName
-	echo "<td>" >> output.html
-	echo $movieName >> output.html
-	echo "</td>" >> output.html
+	# echo "<td>" >> output.html
+	# echo $movieName >> output.html
+	# echo "</td>" >> output.html
+	echo "		<td>" $movieName "</td>" >> output.html
 }
 
 getMovieGenre(){
@@ -59,9 +63,11 @@ getMovieGenre(){
 	movieGenre="${movieGenre#$movieGenrePrefix}"
 	movieGenre="${movieGenre%$movieGenreSuffix}"
 	
-	echo "<td>" >> output.html
-	echo $movieGenre >> output.html
-	echo "</td>" >> output.html
+	# echo "<td>" >> output.html
+	# echo $movieGenre >> output.html
+	# echo "</td>" >> output.html
+
+	echo "		<td>" $movieGenre "</td>" >> output.html
 }
 
 
@@ -85,12 +91,12 @@ getMoviePageLink(){
 
 	html=$(wget "$link" -q -O -)
 
-	echo "<tr>" >> output.html
+	echo "	<tr>" >> output.html
 	getMovieName "$html"
 	getMovieGenre "$html"
 	getMovieRating "$html"
 	getMovieDescription "$html"
-	echo "</tr>" >> output.html
+	echo "	</tr>" >> output.html
 	echo "**********************************************************************"
 	echo ""
 	echo ""
