@@ -82,7 +82,7 @@ getMoviePageLink(){
 	linkPrefix='<table class="findList"> <tr class="findResult odd"> <td class="primary_photo"> <a href="'
 	linkSuffix='" >'
 
-	link="${link#$linkPrefix}"		
+	link="${link#$linkPrefix}"
 	link="${link%$linkSuffix}"
 	link=$host$link
 
@@ -126,21 +126,21 @@ removeNoise(){
 # Main Function
 upperHtml=$(cat upper.html)
 lowerHtml=$(cat lower.html)
-# echo $upperHtml >> output.html
+echo $upperHtml >> output.html
 
 
 for movie in /home/tareq.aziz/movies/*
 do
+	movieWithYear="((19)|(20))(\d\d)"
 	movie="$(echo $movie | awk '{print tolower($0)}')"
-	if [ "$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*?))((\d\d\d\d)))')"  ]	
+	if [ "$(echo $movie  | grep -P $movieWithYear)"  ]	
 	then
-		movieName="$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*?))((\d\d\d\d)))')"
+		movieName="$(echo $movie  | grep -P  $movieWithYear)"
 		removeNoise "$movieName"
 		
 	else
-		movieName="$(echo $movie  | grep -oP  '((/home/tareq.aziz/movies/(.*)))')"	
-
+		movieName="$(echo $movie  | grep -vP $movieWithYear)"	
 		removeNoise "$movieName"
 	fi	
 done	
-# echo $lowerHtml >> output.html
+echo $lowerHtml >> output.html
